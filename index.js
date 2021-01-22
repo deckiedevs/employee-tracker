@@ -50,9 +50,9 @@ const getDepartments = () => {
     });
 };
 
-const addEmployees = (firstName, lastName, role, manager) => {
+const addEmployee = (firstName, lastName, role, manager) => {
     const sql = `INSERT INTO employees (first_name, last_name, role_id, manager_id)
-    VALUES (?, ?, ?, ?)`;
+        VALUES (?, ?, ?, ?)`;
     const params = [firstName, lastName, role, manager]
 
     connection.query(sql, params, (err, res) => {
@@ -61,6 +61,33 @@ const addEmployees = (firstName, lastName, role, manager) => {
         };
 
         console.log('Successfully added employee!')
+    });
+};
+
+const addRole = (title, salary, department) => {
+    const sql = `INSERT INTO roles (title, salary, department_id)
+        VALUES (?, ?, ?)`;
+    const params = [title, salary, department];
+
+    connection.query(sql, params, (err, res) => {
+        if (err) {
+            throw err;
+        };
+
+        console.log('Succesfully added role!')
+    });
+};
+
+const addDepartment = name => {
+    const sql = `INSERT INTO departments (name) VALUES (?)`;
+    const params = [name];
+
+    connection.query(sql, params, (err, res) => {
+        if (err) {
+            throw err;
+        };
+
+        console.log('Successfully added department!')
     });
 };
 
@@ -79,7 +106,7 @@ const promptUser = () => {
                 // case 'View All Employees By Manager':
                 //     break;
                 case 'Add Employee':
-                    addEmployees(response.firstName, response.lastName, 1, 3);
+                    addEmployee(response.firstName, response.lastName, 1, 3);
                     // hard coded employee role and manager for testing
                     break;
                 // case 'Remove Employee':
@@ -92,13 +119,16 @@ const promptUser = () => {
                     getRoles();
                     break;
                 case 'Add Role':
+                    addRole(response.title, response.salary, 1);
+                    // hard coded department for testing only
                     break;
                 // case 'Remove Role':
                 //     break;
                 case 'View All Departments':
-                    getDepartments()
+                    getDepartments();
                     break;
                 case 'Add Department':
+                    addDepartment(response.department);
                     break;
                 // case 'Delete Department':
                 //     break;
