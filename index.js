@@ -1,12 +1,12 @@
 
 const inquirer = require('inquirer');
 const questions = require('./lib/questions');
-const { getEmployees, getData, addEmployee, addRole, addDepartment } = require('./utils/queries')
+const { getEmployees, getData, addEmployee, addRole, addDepartment, exit } = require('./utils/queries')
 
 const promptUser = () => {
     inquirer.prompt(questions)
-        .then(response => {
-            switch (response.initialPrompt) {
+        .then(res => {
+            switch (res.initialPrompt) {
                 case 'View All Employees':
                     getEmployees();
                     break;
@@ -15,7 +15,7 @@ const promptUser = () => {
                 // case 'View All Employees By Manager':
                 //     break;
                 case 'Add Employee':
-                    addEmployee(response.firstName, response.lastName, 1, 3);
+                    addEmployee(res.firstName, res.lastName, 1, 3);
                     // hard coded employee role and manager for testing
                     break;
                 // case 'Remove Employee':
@@ -28,7 +28,7 @@ const promptUser = () => {
                     getData('roles.title', 'Roles', 'roles');
                     break;
                 case 'Add Role':
-                    addRole(response.title, response.salary, 1);
+                    addRole(res.title, res.salary, 1);
                     // hard coded department for testing only
                     break;
                 // case 'Remove Role':
@@ -37,12 +37,15 @@ const promptUser = () => {
                     getData('departments.name', 'Departments', 'departments');
                     break;
                 case 'Add Department':
-                    addDepartment(response.department);
+                    addDepartment(res.department);
                     break;
                 // case 'Delete Department':
                 //     break;
                 // case 'View Utilized Budget':
                 //     break;
+                case 'Quit':
+                    exit();
+                    break;
             };
         });
 };

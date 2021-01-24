@@ -1,5 +1,4 @@
 const mysql = require('mysql2');
-const cTable = require('console.table');
 
 // create connection to database
 const connection = mysql.createConnection({
@@ -10,19 +9,19 @@ const connection = mysql.createConnection({
 });
 
 const getEmployees = () => {
-let query = `SELECT e1.id, e1.first_name, e1.last_name, departments.name AS department, 
+const sql = `SELECT e1.id, e1.first_name, e1.last_name, departments.name AS department, 
 roles.title, roles.salary, CONCAT(e2.first_name, ' ', e2.last_name) AS manager
 FROM employees AS e1 INNER JOIN roles ON e1.role_id = roles.id
 INNER JOIN departments ON departments.id = roles.department_id
 LEFT JOIN employees AS e2 ON e1.manager_id = e2.id`
 
     // complete table
-    connection.query(query, (err, results, fields) => {
+    connection.query(sql, (err, res) => {
         if (err) {
             throw err;
         };
 
-        console.table(results); 
+        console.table(res); 
     });
 };
 
@@ -79,4 +78,6 @@ const addDepartment = name => {
     });
 };
 
-module.exports = { getEmployees, getData, addEmployee, addRole, addDepartment }
+const exit = () => connection.end();
+
+module.exports = { getEmployees, getData, addEmployee, addRole, addDepartment, exit }
