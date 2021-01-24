@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "mysql": "mysql -u root -p"
+    "start": "node index",
+    "mysql": "mysql -u root -p",
+    "migrate": "mysql -u root -ppassword employees_db < db/schema.sql",
+    "seed": "mysql -u root -ppassword employees_db < db/seeds.sql"
   },
   "keywords": [],
   "author": "Mila Decker",

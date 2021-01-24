@@ -1,7 +1,6 @@
 
 const inquirer = require('inquirer');
 const questions = require('./lib/questions');
-const { getEmployees, getData, addEmployee, addRole, addDepartment, exit } = require('./utils/queries')
 
 const promptUser = () => {
     inquirer.prompt(questions)
@@ -15,8 +14,7 @@ const promptUser = () => {
                 // case 'View All Employees By Manager':
                 //     break;
                 case 'Add Employee':
-                    addEmployee(res.firstName, res.lastName, 1, 3);
-                    // hard coded employee role and manager for testing
+                    addEmployee(res.firstName, res.lastName);
                     break;
                 // case 'Remove Employee':
                 //     break;
@@ -25,7 +23,7 @@ const promptUser = () => {
                 // case 'Update Employee Manager':
                 //     break;
                 case 'View All Roles':
-                    getData('roles.title', 'Roles', 'roles');
+                    getRole();
                     break;
                 case 'Add Role':
                     addRole(res.title, res.salary, 1);
@@ -34,20 +32,26 @@ const promptUser = () => {
                 // case 'Remove Role':
                 //     break;
                 case 'View All Departments':
-                    getData('departments.name', 'Departments', 'departments');
+                    getDept();
                     break;
                 case 'Add Department':
-                    addDepartment(res.department);
+                    addDept(res.department);
                     break;
                 // case 'Delete Department':
                 //     break;
                 // case 'View Utilized Budget':
                 //     break;
                 case 'Quit':
-                    exit();
+                    quit();
                     break;
             };
-        });
+        })
 };
 
 promptUser();
+
+module.exports = { promptUser };
+const { addDepartment, quit } = require('./utils/index');
+const { getEmployees, addEmployee } = require('./utils/employees');
+const { getRole, addRole } = require('./utils/roles');
+const { getDept, addDept } = require('./utils/department');
