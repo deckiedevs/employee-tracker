@@ -13,7 +13,7 @@ const getEmployees = () => {
     dbQuery(sql, false, false, true);
 };
 
-const addEmployee = (firstName, lastName) => {
+const addEmployee = () => {
     // gets all possible roles
     connection.query(`SELECT id, title AS name FROM roles`, (err, res) => {
         if (err) {
@@ -24,10 +24,9 @@ const addEmployee = (firstName, lastName) => {
             roleArr.push({
                 id: row.id,
                 name: row.name
-            })
-        })
-        return roleArr;
-    })
+            });
+        });
+    });
     
     // gets all employees as possible managers
     connection.query(`SELECT id, CONCAT(employees.first_name, ' ', employees.last_name) AS name FROM employees`, (err, res) => {
@@ -60,7 +59,7 @@ const addEmployee = (firstName, lastName) => {
                 console.log('Successfully added employee!');
                 promptUser();
             });
-        })
+        });
 };
 
 module.exports = { getEmployees, addEmployee, roleArr, managerArr };

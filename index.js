@@ -25,8 +25,7 @@ const promptUser = () => {
                     getRole();
                     break;
                 case 'Add Role':
-                    addRole(res.title, res.salary, 1);
-                    // hard coded department for testing only
+                    addRole();
                     break;
                 // case 'Remove Role':
                 //     break;
