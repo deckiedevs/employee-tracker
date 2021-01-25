@@ -1,4 +1,3 @@
-
 const inquirer = require('inquirer');
 const questions = require('./lib/questions');
 
@@ -51,7 +50,7 @@ const promptUser = () => {
 promptUser();
 
 module.exports = { promptUser };
-const { addDepartment, quit } = require('./utils/index');
+const { quit } = require('./utils/index');
 const { getEmployees, addEmployee } = require('./utils/employees');
 const { getRole, addRole } = require('./utils/roles');
 const { getDept, addDept } = require('./utils/department');
