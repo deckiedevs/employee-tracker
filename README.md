@@ -1,4 +1,4 @@
-# Employee Trra
+# Employee Tracker
 [![Issues](https://img.shields.io/github/issues/deckiedevs/employee-tracker)](https://github.com/deckiedevs/employee-tracker/issues) [![Issues](https://img.shields.io/github/contributors/deckiedevs/employee-tracker)](https://github.com/deckiedevs/employee-tracker/graphs/contributors) 
 
 ## Description
