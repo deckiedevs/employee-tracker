@@ -13,11 +13,12 @@ const promptUser = () => {
                 // case 'View All Employees By Manager':
                 //     break;
                 case 'Add Employee':
-                    addEmployee(res.firstName, res.lastName);
+                    addEmployee();
                     break;
                 // case 'Remove Employee':
                 //     break;
                 case 'Update Employee Role':
+                    updateEmployee();
                     break;
                 // case 'Update Employee Manager':
                 //     break;
@@ -50,6 +51,6 @@ promptUser();
 
 module.exports = { promptUser };
 const { quit } = require('./utils/index');
-const { getEmployees, addEmployee } = require('./utils/employees');
+const { getEmployees, addEmployee, updateEmployee } = require('./utils/employees');
 const { getRole, addRole } = require('./utils/roles');
 const { getDept, addDept } = require('./utils/department');
