@@ -1,8 +1,8 @@
 const { connection, dbQuery } = require('./index')
 
 const getDept = () =>  {
-    const sql = `SELECT departments.name AS Departments from departments`
-    dbQuery(sql);
+    const sql = `SELECT departments.id as 'Dept. ID', departments.name AS Departments FROM departments`
+    dbQuery(sql, false, false, true);
 };
 
 const addDept = name => {

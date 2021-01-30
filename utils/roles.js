@@ -3,7 +3,8 @@ const { connection, dbQuery } = require('./index')
 const deptArr = [];
 
 const getRole = () =>  {
-    const sql = `SELECT roles.title AS Roles from roles`
+    const sql = `SELECT roles.id as 'Role ID', roles.title AS 'Job Title', departments.name as Department, roles.salary as Salary
+        FROM roles INNER JOIN departments ON departments.id = roles.department_id`
     
     dbQuery(sql, false, false, true)
 };
@@ -21,7 +22,6 @@ const addRole = () => {
                 name: row.name
             });
         });
-        console.log(deptArr)
     });
 
     inquirer.prompt(rolePrompt)
